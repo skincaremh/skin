@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لیست قیمت محصولات و نوبت‌گیری</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .alert {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        header {
+            background-color: #BC8F8F;
+            color: white;
+            padding: 20px;
+        }
+        footer {
+            background-color: #C0C0C0;
+            color: white;
+            padding: 5px;
+            position: relative;
+            width: 100%;
+            font-size: 12px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #7B68EE;
+            color: white;
+        }
+        form {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #2980b9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #1f6f96;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- پیام توجه برای استفاده از فیلترشکن -->
+    <div class="alert">
+        توجه! حتماً با فیلترشکن روشن نوبت بگیرید.
+    </div>
+
+    <header>
+        <h1>لیست قیمت محصولات و فرم نوبت‌گیری</h1>
+    </header>
+
+    <div id="content">
+        <!-- جدول محصولات -->
+        <h2>قیمت‌های روز ۲۰ بهمن ۱۴۰۳</h2>
+        <table>
+            <tr>
+                <th>محصول</th>
+                <th>قیمت</th>
+            </tr>
+            <tr>
+                <td>Apple 30W charger USB-C</td>
+                <td>5,600,000T</td>
+            </tr>
+            <tr>
+                <td>Apple 20W B/A charger USB-C</td>
+                <td>1,800,000T</td>
+            </tr>
+            <tr>
+                <td>Apple 20W ZP/A charger USB-C</td>
+                <td>2,400,000T</td>
+            </tr>
+            <tr>
+                <td>Apple MagSafe 20W charger</td>
+                <td>4,400,000T</td>
+            </tr>
+            <tr>
+                <td>Apple MagSafe 25W charger</td>
+                <td>5,500,000T</td>
+            </tr>
+            <tr>
+                <td>Apple 1m 60W Cable</td>
+                <td>2,400,000T</td>
+            </tr>
+        </table>
+
+        <!-- فرم نوبت‌گیری -->
+        <form id="appointmentForm">
+            <label for="name">نام</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="lastname">نام خانوادگی</label>
+            <input type="text" id="lastname" name="lastname" required>
+
+            <label for="phone">شماره تلفن</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="service">خدمات مورد نظر</label>
+            <textarea id="service" name="service" required></textarea>
+
+            <label for="time">زمان مدنظر</label>
+            <input type="text" id="time" name="time" required>
+
+            <button type="submit">ارسال نوبت</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>تمامی حقوق محفوظ است &copy; 2025</p>
+    </footer>
+
+    <script>
+        const botToken = '7751110649:AAHAUYzsxdrZi9AV68GZ8_7VednWsVubhwg';  // توکن جدید ربات تلگرام
+        const chatId = '6586794887';  // شناسه چت جدید
+
+        // ارسال مشخصات به تلگرام
+        function sendAppointmentToTelegram(name, lastname, phone, service, time) {
+            const message = `
+نام: ${name}
+نام خانوادگی: ${lastname}
+شماره تلفن: ${phone}
+خدمات مورد نظر: ${service}
+زمان مدنظر: ${time}
+`;
+
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert('نوبت شما با موفقیت ثبت شد.');
+                        document.getElementById('appointmentForm').reset();
+                    } else {
+                        alert('خطا در ارسال نوبت. لطفاً دوباره تلاش کنید.');
+                    }
+                })
+                .catch(error => {
+                    alert('خطا در ارسال به تلگرام.');
+                    console.error('Error:', error);
+                });
+        }
+
+        // ارسال فرم نوبت‌گیری
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const lastname = document.getElementById('lastname').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const time = document.getElementById('time').value;
+
+            sendAppointmentToTelegram(name, lastname, phone, service, time);
+        });
+    </script>
+</body>
+</html>

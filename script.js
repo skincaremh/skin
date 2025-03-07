@@ -99,7 +99,7 @@ function sendOrderViaWhatsApp() {
         return;
     }
 
-    const phoneNumber = "989391179404"; // شماره واتساپ شما
+    const phoneNumber = "989353617146"; // شماره واتساپ شما
     let message = "سلام، من می‌خوام محصولات زیر رو سفارش بدم:\n\n";
 
     cart.forEach((item, index) => {

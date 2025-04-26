@@ -1,184 +1,1333 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لیست قیمت خدمات و نوبت‌گیری</title>
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F5E7A3;
+            --gold-dark: #B8860B;
+            --royal-purple: #7851A9;
+            --royal-purple-light: #9A7ED4;
+            --royal-purple-dark: #5D3F8A;
+            --accent: #FF6B6B;
+            --accent-light: #FF8E8E;
+            --accent-dark: #FF5252;
+            --light: #f8f9fa;
+            --dark: #2d3436;
+            --gray: #a0a0a0;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: rgba(0, 0, 0, 0.1);
+            --neuro-bg: #f0f0f3;
+            --neuro-shadow-light: rgba(255, 255, 255, 0.9);
+            --neuro-shadow-dark: rgba(217, 210, 200, 0.9);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #f6f7f9 0%, #e9ecef 100%);
             margin: 0;
             padding: 0;
             text-align: center;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
+            color: var(--dark);
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+            overflow-x: hidden;
         }
-        .alert {
-            background-color: #ffcc00;
-            color: black;
-            padding: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-        }
-        header {
-            background-color: #BC8F8F;
-            color: white;
-            padding: 20px;
-        }
-        footer {
-            background-color: #C0C0C0;
-            color: white;
-            padding: 5px;
-            position: relative;
+        
+        /* Particles container */
+        #particles-js {
+            position: fixed;
             width: 100%;
-            font-size: 12px;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
         }
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
+        
+        .alert {
+            background: linear-gradient(45deg, var(--warning) 0%, #ffeaa7 100%);
+            color: #805b00;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 700;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 100;
+            animation: pulse 2s infinite;
+            border-bottom: 3px solid rgba(0,0,0,0.1);
+            clip-path: polygon(0 0, 100% 0, 97% 100%, 3% 100%);
         }
-        th {
-            background-color: #7B68EE;
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+            50% { box-shadow: 0 4px 20px rgba(253, 203, 110, 0.4); }
+            100% { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             color: white;
+            padding: 80px 20px 100px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+            margin-bottom: 40px;
         }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .header-decoration::before,
+        .header-decoration::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        
+        .header-decoration::before {
+            top: -150px;
+            right: -150px;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .header-decoration::after {
+            bottom: -150px;
+            left: -150px;
+            animation: float 18s ease-in-out infinite reverse;
+        }
+        
+        header h1 {
+            margin: 0 0 30px 0;
+            font-size: 48px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            animation: fadeInDown 1s both;
+            background: linear-gradient(to right, #ffffff, #f5e7a3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+        }
+        
+        .shop-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 20px 40px;
+            margin-top: 20px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: fadeInUp 1s both;
+            animation-delay: 0.5s;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .shop-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.6);
+        }
+        
+        .shop-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-dark) 0%, var(--accent) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .shop-button:hover::before {
+            opacity: 1;
+        }
+        
+        .shop-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1);
+            animation: ripple 1s infinite;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(20);
+                opacity: 0;
+            }
+        }
+        
+        .shop-button i {
+            margin-left: 8px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-5px);}
+            60% {transform: translateY(-3px);}
+        }
+        
+        #content {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .section-title {
+            color: var(--gold-dark);
+            margin: 30px 0 60px;
+            font-size: 42px;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--royal-purple) 100%);
+            border-radius: 2px;
+        }
+        
+        .section-title::after {
+            content: '✨';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 28px;
+        }
+        
+        .royal-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4AF37' width='24' height='24'%3E%3Cpath d='M12 1L9 9H2L7 14.5L5 22L12 17.5L19 22L17 14.5L22 9H15L12 1Z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .royal-decoration-1 {
+            top: 10%;
+            left: 5%;
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        .royal-decoration-2 {
+            top: 30%;
+            right: 5%;
+            animation: float 12s ease-in-out infinite reverse;
+        }
+        
+        .royal-decoration-3 {
+            bottom: 15%;
+            left: 10%;
+            animation: float 14s ease-in-out infinite;
+        }
+        
+        .royal-decoration-4 {
+            bottom: 25%;
+            right: 10%;
+            animation: float 16s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        .price-table-container {
+            position: relative;
+            margin: 80px auto;
+            max-width: 900px;
+            perspective: 1000px;
+        }
+        
+        .price-table-container::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--royal-purple-light) 100%);
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0.2;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            transform: rotateX(5deg) rotateY(-5deg);
+            filter: blur(15px);
+        }
+        
+        .price-table-wrapper {
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            transition: transform 0.5s;
+        }
+        
+        .price-table-container:hover .price-table-wrapper {
+            transform: translateZ(30px);
+        }
+        
+        .price-table-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .price-table-decoration::before,
+        .price-table-decoration::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px solid rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+        }
+        
+        .price-table-decoration::before {
+            top: -100px;
+            right: -100px;
+        }
+        
+        .price-table-decoration::after {
+            bottom: -100px;
+            left: -100px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 50px rgba(0,0,0,0.15),
+                0 0 0 1px rgba(255,255,255,0.1),
+                inset 0 0 0 1px rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            transition: transform 0.5s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        th, td {
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        th {
+            background: linear-gradient(135deg, var(--royal-purple) 0%, var(--royal-purple-dark) 100%);
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--gold);
+        }
+        
+        th::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            20% { transform: translateX(100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        th:first-child {
+            border-top-right-radius: 20px;
+        }
+        
+        th:last-child {
+            border-top-left-radius: 20px;
+        }
+        
+        tr:last-child td:first-child {
+            border-bottom-right-radius: 20px;
+        }
+        
+        tr:last-child td:last-child {
+            border-bottom-left-radius: 20px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(248, 249, 250, 0.7);
+        }
+        
+        tr:not(:last-child) td {
+            border-bottom: 1px solid rgba(233, 236, 239, 0.5);
+        }
+        
+        td {
+            font-size: 18px;
+            font-weight: 500;
+            color: #2d3436;
+            transition: all 0.3s ease;
+        }
+        
+        tr:hover td {
+            background-color: rgba(212, 175, 55, 0.1);
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        td:first-child {
+            font-weight: 700;
+            color: var(--royal-purple-dark);
+            position: relative;
+            padding-right: 30px;
+        }
+        
+        td:first-child::before {
+            content: '•';
+            position: absolute;
+            right: 15px;
+            color: var(--gold);
+            font-size: 20px;
+        }
+        
+        td:last-child {
+            font-weight: 700;
+            color: var(--gold-dark);
+            position: relative;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        }
+        
+        td:last-child::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            transform: translateY(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        tr:hover td:last-child::before {
+            width: 100%;
+        }
+        
+        .form-container {
+            position: relative;
+            margin: 120px auto 100px;
+            max-width: 700px;
+            perspective: 1000px;
+        }
+        
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            right: -40px;
+            bottom: -40px;
+            background: linear-gradient(135deg, var(--royal-purple-light) 0%, var(--gold-light) 100%);
+            border-radius: 40px;
+            z-index: -1;
+            opacity: 0.2;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+            transform: rotateX(5deg) rotateY(5deg);
+            filter: blur(20px);
+        }
+        
+        .form-wrapper {
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            transition: transform 0.5s;
+        }
+        
+        .form-container:hover .form-wrapper {
+            transform: translateZ(40px);
+        }
+        
+        .form-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .form-decoration::before,
+        .form-decoration::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid rgba(123, 81, 169, 0.1);
+            border-radius: 50%;
+        }
+        
+        .form-decoration::before {
+            top: -75px;
+            right: -75px;
+        }
+        
+        .form-decoration::after {
+            bottom: -75px;
+            left: -75px;
+        }
+        
         form {
-            margin: 20px auto;
-            width: 80%;
-            max-width: 600px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.1),
+                0 0 0 1px rgba(255,255,255,0.1),
+                inset 0 0 0 1px rgba(255,255,255,0.2);
+            text-align: right;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            transition: transform 0.5s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
+        
+        form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--royal-purple) 100%);
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--gold-dark);
+            font-size: 36px;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .form-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--royal-purple));
+            border-radius: 4px;
+        }
+        
+        .form-group {
+            margin-bottom: 35px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--royal-purple-dark);
+            font-size: 18px;
+            transform: translateZ(5px);
+        }
+        
+        label i {
+            margin-left: 8px;
+            color: var(--gold);
+        }
+        
         input, select {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-        button {
-            background-color: #2980b9;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(233, 236, 239, 0.8);
+            font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
             font-size: 16px;
+            color: var(--dark);
+            background-color: rgba(248, 249, 250, 0.8);
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 5px 15px rgba(0,0,0,0.05),
+                inset 0 0 0 1px rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
         }
-        button:hover {
-            background-color: #1f6f96;
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 
+                0 5px 20px rgba(212, 175, 55, 0.2),
+                inset 0 0 0 1px rgba(255,255,255,0.3);
+            background-color: white;
+            transform: translateY(-3px);
+        }
+        
+        select[multiple] {
+            height: 200px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: white;
+            padding: 22px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px) translateZ(10px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--gold-dark) 0%, var(--gold) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .submit-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1);
+            animation: ripple 1s infinite;
+        }
+        
+        .submit-btn i {
+            margin-left: 10px;
+            animation: bounce 2s infinite;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #4b4b4b 100%);
+            color: white;
+            padding: 60px 25px 30px;
+            text-align: center;
+            font-size: 18px;
+            position: relative;
+            margin-top: 150px;
+        }
+        
+        footer p {
+            margin: 0;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-wave {
+            position: absolute;
+            top: -120px;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%232d3436'%3E%3C/path%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%232d3436'%3E%3C/path%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%232d3436'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-gold {
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+        
+        .footer-decoration {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        
+        /* Floating elements */
+        .floating {
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.6;
+            filter: blur(3px);
+        }
+        
+        .floating-1 {
+            top: 20%;
+            left: 10%;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold-light), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .floating-2 {
+            top: 60%;
+            right: 15%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--royal-purple-light), transparent);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        .floating-3 {
+            bottom: 15%;
+            left: 20%;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-light), transparent);
+            border-radius: 50%;
+            animation: float 7s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.2),
+                0 0 0 1px rgba(255,255,255,0.1);
+            z-index: 1000;
+            text-align: center;
+            display: none;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid var(--gold-light);
+        }
+        
+        .success-message.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        
+        .success-message i {
+            font-size: 90px;
+            color: var(--success);
+            margin-bottom: 30px;
+            text-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+            animation: success-bounce 1s both;
+        }
+        
+        @keyframes success-bounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .success-message h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--gold-dark);
+            font-weight: 800;
+        }
+        
+        .success-message p {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+        
+        .success-message button {
+            background: linear-gradient(45deg, var(--success) 0%, #00cec9 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
+            box-shadow: 0 15px 30px rgba(0, 184, 148, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .success-message button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 184, 148, 0.4);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            backdrop-filter: blur(8px);
+        }
+        
+        .overlay.active {
+            opacity: 1;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate__fadeIn {
+            animation: fadeIn 1s both;
+        }
+        
+        .animate__fadeInDown {
+            animation: fadeInDown 1s both;
+        }
+        
+        .animate__fadeInUp {
+            animation: fadeInUp 1s both;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 50px 15px 80px;
+            }
+            
+            header h1 {
+                font-size: 32px;
+            }
+            
+            .shop-button {
+                padding: 18px 30px;
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+            
+            table, form {
+                border-radius: 15px;
+            }
+            
+            th, td {
+                padding: 18px 10px;
+                font-size: 16px;
+            }
+            
+            th {
+                font-size: 20px;
+            }
+            
+            form {
+                padding: 40px 25px;
+            }
+            
+            .form-title {
+                font-size: 28px;
+            }
+            
+            input, select, .submit-btn {
+                padding: 18px;
+                font-size: 16px;
+            }
+            
+            .floating, .royal-decoration {
+                display: none;
+            }
+            
+            .success-message {
+                padding: 30px;
+                width: 90%;
+            }
+            
+            .success-message i {
+                font-size: 70px;
+            }
+            
+            .success-message h3 {
+                font-size: 24px;
+            }
+            
+            .success-message p {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
-
+    <div id="particles-js"></div>
+    
     <div class="alert">
-        توجه! حتماً با فیلترشکن روشن نوبت بگیرید.
+        <i class="fas fa-exclamation-triangle"></i> توجه! حتماً با فیلترشکن روشن نوبت بگیرید.
     </div>
-      
-    <header>
-    <h1>لیست قیمت محصولات و فرم نوبت‌گیری</h1>
-    <a href="shop.html" class="shop-button">مشاهده محصولات</a>
-</header>
 
-<style>
-    .shop-button {
-        display: inline-block;
-        background-color: #ff6600;
-        color: white;
-        padding: 10px 20px;
-        margin-top: 10px;
-        text-decoration: none;
-        font-size: 16px;
-        border-radius: 5px;
-        transition: 0.3s;
-    }
-    .shop-button:hover {
-        background-color: #cc5500;
-    }
-</style>
+    <header>
+        <div class="header-decoration"></div>
+        <div class="header-content">
+            <h1>لیست قیمت محصولات و فرم نوبت‌گیری</h1>
+            <a class="shop-button" href="https://erisrtg.ir/mahnazshop">
+                <i class="fas fa-shopping-bag"></i> مشاهده محصولات
+            </a>
+        </div>
+    </header>
 
     <div id="content">
-        <h2>فرم نوبت گیری در انتها</h2>
-        <table>
-            <tr><th>خدمات</th><th>قیمت</th></tr>
-            <tr><td>فیشال بدون دستگاه</td><td>180,000T</td></tr>
-            <tr><td>فیشال ساده</td><td>300,000T</td></tr>
-            <tr><td>فیشال تخصصی</td><td>500,000T</td></tr>
-            <tr><td>مزونیدلینگ سر</td><td>300,000T</td></tr>
-            <tr><td>مزونیدلینگ بوتاکس</td><td>350,000T</td></tr>
-            <tr><td>مزونیدلینگ جوانساز</td><td>500,000T</td></tr>
-            <tr><td>مزونیدلینگ سفید کننده</td><td>600,000T</td></tr>
-            <tr><td>مزونیدلینگ جوانساز ضد چروک ضد لک</td><td>800,000T</td></tr>
-            <tr><td>هایفو</td><td>450,000T</td></tr>
-        </table>
+        <div class="royal-decoration royal-decoration-1"></div>
+        <div class="royal-decoration royal-decoration-2"></div>
+        <div class="royal-decoration royal-decoration-3"></div>
+        <div class="royal-decoration royal-decoration-4"></div>
+        
+        <div class="floating floating-1"></div>
+        <div class="floating floating-2"></div>
+        <div class="floating floating-3"></div>
+        
+        <h2 class="section-title animate__fadeIn">خدمات و قیمت‌ها</h2>
 
-        <form id="appointmentForm">
-            <label for="name">نام</label>
-            <input type="text" id="name" name="name" required>
+        <div class="price-table-container animate__fadeIn">
+            <div class="price-table-wrapper">
+                <div class="price-table-decoration"></div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>خدمات</th>
+                            <th>قیمت</th>
+                        </tr>
+                        <tr>
+                            <td>فیشال بدون دستگاه</td>
+                            <td>180,000T</td>
+                        </tr>
+                        <tr>
+                            <td>فیشال ساده</td>
+                            <td>300,000T</td>
+                        </tr>
+                        <tr>
+                            <td>فیشال تخصصی</td>
+                            <td>500,000T</td>
+                        </tr>
+                        <tr>
+                            <td>مزونیدلینگ سر</td>
+                            <td>300,000T</td>
+                        </tr>
+                        <tr>
+                            <td>مزونیدلینگ بوتاکس</td>
+                            <td>350,000T</td>
+                        </tr>
+                        <tr>
+                            <td>مزونیدلینگ جوانساز</td>
+                            <td>500,000T</td>
+                        </tr>
+                        <tr>
+                            <td>مزونیدلینگ سفید کننده</td>
+                            <td>600,000T</td>
+                        </tr>
+                        <tr>
+                            <td>مزونیدلینگ جوانساز ضد چروک ضد لک</td>
+                            <td>800,000T</td>
+                        </tr>
+                        <tr>
+                            <td>هایفو</td>
+                            <td>450,000T</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-            <label for="lastname">نام خانوادگی</label>
-            <input type="text" id="lastname" name="lastname" required>
-
-            <label for="phone">شماره تلفن</label>
-            <input type="text" id="phone" name="phone" required>
-
-            <label for="service">خدمات مورد نظر (حداکثر ۳ انتخاب)</label>
-            <select id="service" name="service" multiple required>
-                <option value="فیشال بدون دستگاه">فیشال بدون دستگاه</option>
-                <option value="فیشال ساده">فیشال ساده</option>
-                <option value="فیشال تخصصی">فیشال تخصصی</option>
-                <option value="مزونیدلینگ سر">مزونیدلینگ سر</option>
-                <option value="مزونیدلینگ بوتاکس">مزونیدلینگ بوتاکس</option>
-                <option value="مزونیدلینگ جوانساز">مزونیدلینگ جوانساز</option>
-                <option value="مزونیدلینگ سفید کننده">مزونیدلینگ سفید کننده</option>
-                <option value="مزونیدلینگ جوانساز ضد چروک ضد لک">مزونیدلینگ جوانساز ضد چروک ضد لک</option>
-                <option value="هایفو">هایفو</option>
-            </select>
-
-            <label for="day">روز مورد نظر</label>
-            <select id="day" name="day" required>
-                <option value="شنبه">شنبه</option>
-                <option value="یکشنبه">یکشنبه</option>
-                <option value="دوشنبه">دوشنبه</option>
-                <option value="سه‌شنبه">سه‌شنبه</option>
-                <option value="چهارشنبه">چهارشنبه</option>
-                <option value="پنج‌شنبه">پنج‌شنبه</option>
-                <option value="جمعه">جمعه</option>
-            </select>
-
-            <label for="hour">ساعت مورد نظر</label>
-            <select id="hour" name="hour" required>
-                <option value="9:00">9:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
-            </select>
-
-            <button type="submit">ارسال نوبت</button>
-        </form>
+        <div class="form-container animate__fadeIn">
+            <div class="form-wrapper">
+                <div class="form-decoration"></div>
+                <form id="appointmentForm">
+                    <div class="form-title">فرم رزرو نوبت</div>
+                    
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> نام</label>
+                        <input id="name" name="name" required="" type="text" placeholder="نام خود را وارد کنید" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastname"><i class="fas fa-user"></i> نام خانوادگی</label>
+                        <input id="lastname" name="lastname" required="" type="text" placeholder="نام خانوادگی خود را وارد کنید" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone"><i class="fas fa-phone"></i> شماره تلفن</label>
+                        <input id="phone" name="phone" required="" type="text" placeholder="شماره تماس خود را وارد کنید" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service"><i class="fas fa-list-check"></i> خدمات مورد نظر (حداکثر ۳ انتخاب)</label>
+                        <select id="service" multiple="multiple" name="service" required="">
+                            <option value="فیشال بدون دستگاه">فیشال بدون دستگاه</option>
+                            <option value="فیشال ساده">فیشال ساده</option>
+                            <option value="فیشال تخصصی">فیشال تخصصی</option>
+                            <option value="مزونیدلینگ سر">مزونیدلینگ سر</option>
+                            <option value="مزونیدلینگ بوتاکس">مزونیدلینگ بوتاکس</option>
+                            <option value="مزونیدلینگ جوانساز">مزونیدلینگ جوانساز</option>
+                            <option value="مزونیدلینگ سفید کننده">مزونیدلینگ سفید کننده</option>
+                            <option value="مزونیدلینگ جوانساز ضد چروک ضد لک">مزونیدلینگ جوانساز ضد چروک ضد لک</option>
+                            <option value="هایفو">هایفو</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="day"><i class="fas fa-calendar"></i> روز مورد نظر</label>
+                        <select id="day" name="day" required="">
+                            <option value="شنبه">شنبه</option>
+                            <option value="یکشنبه">یکشنبه</option>
+                            <option value="دوشنبه">دوشنبه</option>
+                            <option value="سه‌شنبه">سه‌شنبه</option>
+                            <option value="چهارشنبه">چهارشنبه</option>
+                            <option value="پنج‌شنبه">پنج‌شنبه</option>
+                            <option value="جمعه">جمعه</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hour"><i class="fas fa-clock"></i> ساعت مورد نظر</label>
+                        <select id="hour" name="hour" required="">
+                            <option value="9:00">9:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-calendar-check"></i> ثبت نوبت
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 
     <footer>
-        <p>تمامی حقوق محفوظ است &copy; 2025</p>
+        <div class="footer-wave"></div>
+        <div class="footer-content">
+            <p>تمامی حقوق محفوظ است <span class="footer-gold">&copy; 2025</span></p>
+            <div class="footer-decoration"></div>
+        </div>
     </footer>
-
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        <h3>نوبت شما با موفقیت ثبت شد!</h3>
+        <p>به زودی با شما تماس خواهیم گرفت.</p>
+        <button id="closeSuccessMessage">متوجه شدم</button>
+    </div>
+    
     <script>
+        // Initialize particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 30,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#D4AF37"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 5,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#D4AF37",
+                        "opacity": 0.2,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 0.5
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+            
+            // Initialize VanillaTilt for 3D effect
+            VanillaTilt.init(document.querySelector(".price-table-wrapper"), {
+                max: 5,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.2,
+            });
+            
+            VanillaTilt.init(document.querySelector(".form-wrapper"), {
+                max: 5,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.2,
+            });
+        });
+        
         const botToken = '7751110649:AAHAUYzsxdrZi9AV68GZ8_7VednWsVubhwg';  
         const chatId = '6586794887';  
 
@@ -196,10 +1345,31 @@
 
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
                 .then(response => response.json())
-                .then(() => alert('نوبت شما با موفقیت ثبت شد!'))
+                .then(() => {
+                    // Show success message with animation
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    setTimeout(() => {
+                        document.getElementById('overlay').classList.add('active');
+                        document.getElementById('successMessage').classList.add('active');
+                    }, 10);
+                    
+                    // Reset form
+                    document.getElementById('appointmentForm').reset();
+                })
                 .catch(() => alert('خطا در ارسال به تلگرام!'));
         });
+        
+        document.getElementById('closeSuccessMessage').addEventListener('click', function() {
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('successMessage').classList.remove('active');
+            
+            setTimeout(() => {
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'none';
+            }, 500);
+        });
     </script>
-
 </body>
 </html>
